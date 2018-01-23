@@ -2,6 +2,7 @@ require 'json'
 
 class LanguagePack::Helpers::Nodebin
   URL = "https://nodebin.herokai.com/v1/"
+  HEROKU_S3REPO_MIRROR_URL = ENV['HEROKU_S3REPO_MIRROR_URL'] || "https://s3pository.heroku.com"
 
   def self.query(q)
     response = Net::HTTP.get_response(URI("#{URL}/#{q}"))
@@ -14,7 +15,7 @@ class LanguagePack::Helpers::Nodebin
     version = "6.11.1"
     {
       "number" => version,
-      "url"    => "https://s3pository.heroku.com/node/v#{version}/node-v#{version}-linux-x64.tar.gz"
+      "url"    => "https://#{HEROKU_S3REPO_MIRROR_URL}/node/v#{version}/node-v#{version}-linux-x64.tar.gz"
     }
   end
 
